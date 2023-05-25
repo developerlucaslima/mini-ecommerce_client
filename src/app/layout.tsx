@@ -1,9 +1,15 @@
 import StyledComponentsRegistry from '@/lib/registry'
 import { ReactNode } from 'react'
+import GlobalStyles from '../styles/global'
+
+import { Roboto_Flex as Roboto } from 'next/font/google'
+
+const roboto = Roboto({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html>
+    <html className={roboto.className}>
+      <GlobalStyles />
       <body>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
