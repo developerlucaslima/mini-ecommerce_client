@@ -1,7 +1,7 @@
-import { Container } from './styles'
 import Image from 'next/image'
 import signIn from '../assets/img-signin.jpg'
 import { FormRegister } from '@/components/formRegister/FormRegister'
+import { Container } from './stlyles'
 
 export default function Home() {
   return (

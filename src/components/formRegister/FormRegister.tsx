@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Container, Form } from './styles'
+import { api } from '@/lib/api'
 
 const RegisterFormSchema = z.object({
   username: z
@@ -29,8 +30,14 @@ export function FormRegister() {
   })
 
   async function handleClaimUsername(data: FormData) {
-    const { username, password } = data
-    console.log(username, password)
+    try {
+      await api.post('/users', {
+        username: data.username,
+        password: data.password,
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
