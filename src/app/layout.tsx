@@ -9,8 +9,8 @@ const roboto = Roboto({ subsets: ['latin'] })
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html className={roboto.className}>
-      <GlobalStyles />
       <body>
+        <GlobalStyles />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
