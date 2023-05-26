@@ -1,3 +1,4 @@
+'use client'
 import { ForwardRefExoticComponent } from 'react'
 import { Container } from './styles'
 
@@ -18,8 +19,8 @@ export function Button({
 }: InputProps) {
   return (
     <Container type={submit ? 'submit' : 'button'} disabled={loading}>
-      {Icon && <Icon size={20} />}
       {loading ? 'Carregando...' : title}
+      {Icon && <Icon size={20} />}
     </Container>
   )
 }

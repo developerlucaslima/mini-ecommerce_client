@@ -14,6 +14,7 @@ export const Container = styled.div`
 
   > svg {
     margin-left: 1.6rem;
+    color: #ffc03c;
   }
 
   > input {

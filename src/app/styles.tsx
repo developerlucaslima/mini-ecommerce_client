@@ -29,12 +29,6 @@ export const Container = styled.div`
       justify-content: start;
       text-align: start;
     }
-
-    > form {
-      svg {
-        color: #ffc03c;
-      }
-    }
   }
 
   .img {
