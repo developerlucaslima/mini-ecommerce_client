@@ -20,6 +20,24 @@ export default createGlobalStyle`
     color: #D3D3D3;
     -webkit-font-smoothing: antialised;
   }
+
+  body, input, button, textarea {
+    font-size: 1.6rem;
+    outline: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button, a {
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+
+  button:hover, a:hover {
+    filter: brightness(0.9);
+  }
 `
 
 // -------------- theme color
@@ -31,6 +49,7 @@ export const darkTheme = {
 
   textColor: '#F5F5F5',
   textColorSoft: '#D3D3D3',
+  placeholder: '#b9b9b9',
 
   links: '#202020',
   bg: '#000000',

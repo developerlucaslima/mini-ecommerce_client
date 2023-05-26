@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
     "@prisma/client": "^4.14.1",
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/node": "20.2.3",
@@ -22,8 +23,10 @@
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "styled-components": "^6.0.0-rc.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "prisma": "^4.14.1"
