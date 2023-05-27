@@ -1,18 +1,18 @@
 Você deve desenvolver um mini e-commerce utilizando NextJS e um banco de dados para armazenar os produtos. O aplicativo deve ter as seguintes funcionalidades:
 
-  [ ] - Tela de cadastro de produtos:
-  [ ] - Permitir que o usuário adicione novos produtos, fornecendo informações como nome, descrição, preço e imagem.
-  [ ] - Validar os campos obrigatórios e exibir mensagens de erro caso algum campo não esteja preenchido corretamente.
-  [ ] - Salvar os produtos no banco de dados.
-  [ ] - Tela de listagem de produtos:
-  [ ] - Exibir todos os produtos cadastrados, incluindo nome, descrição, preço e imagem.
-  [ ] - Permitir que o usuário filtre os produtos por categoria ou utilize uma pesquisa por nome.
-  [ ] - Exibir os produtos de forma paginada, com um número fixo de produtos por página.
-  [ ] - Funcionalidade de carrinho de compras:
-  [ ] - Permitir que o usuário adicione produtos ao carrinho.
-  [ ] - Exibir o conteúdo atual do carrinho, incluindo nome, preço, quantidade e subtotal de cada produto.
-  [ ] - Permitir que o usuário atualize a quantidade de produtos no carrinho e remova produtos.
-  [ ] - Calcular e exibir o total do carrinho.
+  [ ] - Tela de cadastro de produtos: (new)
+  [ ] - Permitir que o usuário adicione novos produtos, fornecendo informações como nome, descrição, preço e imagem. (new)
+  [ ] - Validar os campos obrigatórios e exibir mensagens de erro caso algum campo não esteja preenchido corretamente. (new)
+  [x] - Salvar os produtos no banco de dados. (new)
+  [ ] - Tela de listagem de produtos: (products)
+  [ ] - Exibir todos os produtos cadastrados, incluindo nome, descrição, preço e imagem. (products)
+  [ ] - Permitir que o usuário filtre os produtos por categoria ou utilize uma pesquisa por nome. (products:id)
+  [ ] - Exibir os produtos de forma paginada, com um número fixo de produtos por página. (products)
+  [ ] - Funcionalidade de carrinho de compras: (cart)
+  [ ] - Permitir que o usuário adicione produtos ao carrinho. (cart)
+  [ ] - Exibir o conteúdo atual do carrinho, incluindo nome, preço, quantidade e subtotal de cada produto. (cart)
+  [ ] - Permitir que o usuário atualize a quantidade de produtos no carrinho e remova produtos. (cart)
+  [ ] - Calcular e exibir o total do carrinho. (cart)
 
 Requisitos técnicos:
 
