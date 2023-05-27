@@ -10,7 +10,7 @@ export const Form = styled.div`
 
     > label {
       font-size: 1.4rem;
-      color: ${({ theme }) => theme.gray100};
+      color: ${({ theme }) => theme.red};
     }
 
     > input {

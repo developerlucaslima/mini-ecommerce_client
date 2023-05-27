@@ -38,6 +38,7 @@ export function FormSignUp() {
   })
 
   const [appError, setAppError] = useState('')
+
   const router = useRouter()
 
   function handleClaimUsername(data: FormData) {

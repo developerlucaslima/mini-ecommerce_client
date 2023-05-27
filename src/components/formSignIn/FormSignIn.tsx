@@ -7,6 +7,7 @@ import { api } from '@/lib/api'
 import { useState } from 'react'
 import { ArrowRight } from 'phosphor-react'
 import Link from 'next/link'
+import { useAuth } from '@/hooks/auth'
 
 const RegisterFormSchema = z.object({
   username: z
@@ -34,6 +35,7 @@ export function FormSignIn() {
   })
 
   const [appError, setAppError] = useState('')
+  const { setData }: any = useAuth()
 
   function handleClaimUsername(data: FormData) {
     api
@@ -41,8 +43,13 @@ export function FormSignIn() {
         username: data.username,
         password: data.password,
       })
-      .then(() => {
-        alert('Registered successfully')
+      .then((response) => {
+        const { user, token } = response.data
+        console.log(user) // Access the user object
+        console.log(token) // Access the token
+        setData({ user, token })
+
+        api.defaults.headers.authorization = `Bearer ${token}`
       })
       .catch((err) => {
         if (err.response) {
