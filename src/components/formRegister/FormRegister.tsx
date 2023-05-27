@@ -15,7 +15,11 @@ const RegisterFormSchema = z.object({
     .transform((username) => username.toLowerCase()),
   password: z
     .string()
-    .min(3, { message: 'The password must have at least 3 characters.' }),
+    .min(6, { message: 'The username must have at least 6 characters.' })
+    .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,}$/, {
+      message:
+        'It should contain special characters, uppercase and lowercase letters, and numbers.',
+    }),
 })
 
 type FormData = z.infer<typeof RegisterFormSchema>
