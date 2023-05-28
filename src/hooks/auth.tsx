@@ -1,5 +1,4 @@
 'use client'
-import { api } from '@/lib/api'
 import { theme } from '@/styles/theme'
 import { ReactNode, createContext, useContext, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
