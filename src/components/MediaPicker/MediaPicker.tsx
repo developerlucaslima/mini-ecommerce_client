@@ -1,0 +1,46 @@
+'use client'
+
+import { ChangeEvent, useState } from 'react'
+import { Container } from './styles'
+import { Camera } from 'phosphor-react'
+
+export function MediaPicker({ ...rest }) {
+  const [preview, setPreview] = useState<string | null>(null)
+
+  function onFileSelected(event: ChangeEvent<HTMLInputElement>) {
+    const { files } = event.target
+
+    if (!files) {
+      return
+    }
+
+    const previewURL = URL.createObjectURL(files[0])
+
+    setPreview(previewURL)
+  }
+
+  return (
+    <Container>
+      <div className="fakeInput">
+        <Camera size={25} />
+        <p>Add media</p>
+      </div>
+      <input
+        onChange={onFileSelected}
+        type="file"
+        name="coverUrl"
+        id="media"
+        accept="image/*"
+        className="invisible h-0 w-0"
+      />
+      {preview && (
+        // eslint-disable-next-line
+        <img
+          src={preview}
+          alt=""
+          className="img"
+        />
+      )}
+    </Container>
+  )
+}

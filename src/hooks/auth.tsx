@@ -10,7 +10,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState({ user: '', token: '' })
 
   return (
-    <AuthContext.Provider value={{ username: data.user, setData }}>
+    <AuthContext.Provider value={{ user: data.user, setData }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </AuthContext.Provider>
   )
