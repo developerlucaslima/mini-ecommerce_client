@@ -10,6 +10,11 @@ export const Display = styled.div`
 
   > ul {
     padding: 3.2rem;
+    gap: 3.2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
     li {
       max-width: 40rem;
       gap: 1.6rem;
