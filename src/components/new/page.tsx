@@ -1,54 +1,86 @@
 'use client'
-import { FormEvent } from 'react'
-import { Form } from './styles'
-import { Plus, X } from 'phosphor-react'
+import { ChangeEvent, useState } from 'react'
+import { Container } from './styles'
+import { Camera, Plus, X } from 'phosphor-react'
 import { api } from '@/lib/api'
-import { MediaPicker } from '@/components/MediaPicker/MediaPicker'
-import { useAuth } from '@/context/auth'
 import { useNew } from '@/context/new'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const productFormSchema = z.object({
+  name: z.string().nonempty(),
+  description: z.string().nonempty(),
+  price: z.unknown(),
+  media: z.unknown(),
+})
+
+type FormData = z.infer<typeof productFormSchema>
 
 export default function NewProduct() {
-  const { user }: any = useAuth()
-  const userId = user.id
+  const [preview, setPreview] = useState<string | null>(null)
+  const { setSellProduct } = useNew()
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(productFormSchema),
+  })
 
-  async function handleCreateProduct(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  const [appError, setAppError] = useState('')
 
-    const formData = new FormData(event.currentTarget)
-    const fileToUpload = formData.get('media')
+  function onFileSelected(event: ChangeEvent<HTMLInputElement>) {
+    const { files } = event.target
+
+    if (!files || files.length === 0) {
+      return
+    }
+
+    const file = files[0]
+    const previewURL = URL.createObjectURL(file)
+
+    setPreview(previewURL)
+    setValue('media', file) // Definir o valor do campo 'media' usando setValue
+  }
+
+  async function handleCreateProduct(data: FormData) {
+    const { name, description, price, media } = productFormSchema.parse(data)
+    console.log(data)
+
     let image = ''
 
-    if (fileToUpload) {
+    if (media) {
       const uploadFormData = new FormData()
-      uploadFormData.set('file', fileToUpload)
+      uploadFormData.set('file', media)
 
       const uploadResponse = await api.post('/upload', uploadFormData)
 
       image = uploadResponse.data.fileUrl
+      console.log(image)
     }
 
     await api
       .post('/products', {
-        userId,
-        name: formData.get('name'),
-        description: formData.get('description'),
-        price: formData.get('price'),
+        name,
+        description,
+        price,
         image,
       })
       .then(() => {
+        console.log('Successfully uploaded')
         alert('Product registered successfully')
       })
       .catch((err) => {
         if (err.response) {
-          // setAppError(err.response.data.message)
+          setAppError(err.response.data.message)
         }
       })
   }
 
-  const { setSellProduct } = useNew()
-
   return (
-    <Form>
+    <Container>
       <div className="title">
         <h1>Sell product</h1>
         <button className="ShoppingCart">
@@ -60,33 +92,50 @@ export default function NewProduct() {
           />
         </button>
       </div>
-      <form onSubmit={handleCreateProduct}>
+      <form onSubmit={handleSubmit(handleCreateProduct)}>
         {/* Name */}
         <label>
-          {/* {appError || errors.name?.message} */}
-          <input type="text" name="name" placeholder="Product name" />
+          {errors.name?.message}
+          <input type="text" placeholder="Product name" {...register('name')} />
         </label>
 
         {/* Description */}
         <label>
-          {/* {appError || errors.description?.message} */}
+          {appError && <span>{errors.description?.message}</span>}
           <input
             type="text"
-            name="description"
             placeholder="Product description"
+            {...register('description')}
           />
         </label>
 
         {/* Price */}
         <label>
-          {/* {appError || errors.price?.message} */}
-          <input type="number" name="price" placeholder="Product price" />
+          {appError && <span>{errors.price?.message}</span>}
+          <input
+            type="number"
+            placeholder="Product price"
+            {...register('price')}
+          />
         </label>
 
         {/* Image */}
         <label htmlFor="media">
-          {/* {appError || errors.image?.message} */}
-          <MediaPicker />
+          <div className="camera">
+            <Camera size={25} />
+            <p>Add media</p>
+          </div>
+          <input
+            {...register('media')}
+            onChange={onFileSelected}
+            type="file"
+            name="media"
+            id="media"
+            accept="image/*"
+            className="hidden"
+          />
+          {/* eslint-disable-next-line */}
+          {preview && <img src={preview} alt="" className="img" />}
         </label>
 
         <button type="submit">
@@ -94,6 +143,6 @@ export default function NewProduct() {
           Add this product
         </button>
       </form>
-    </Form>
+    </Container>
   )
 }

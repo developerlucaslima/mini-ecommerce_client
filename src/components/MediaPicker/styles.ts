@@ -23,12 +23,4 @@ export const Container = styled.div`
     width: 0;
     background-color: red;
   }
-
-  img,
-  .img {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-  }
 `

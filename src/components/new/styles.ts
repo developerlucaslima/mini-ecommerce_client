@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 
-export const Form = styled.div`
+export const Container = styled.div`
   height: 100vh;
   max-width: 40rem;
   padding: 1.6rem;
@@ -44,6 +44,13 @@ export const Form = styled.div`
       font-size: 1.4rem;
       color: ${({ theme }) => theme.red};
 
+      .hidden {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+        background-color: red;
+      }
+
       input {
         height: 5.6rem;
         width: 100%;
@@ -58,6 +65,25 @@ export const Form = styled.div`
           color: ${({ theme }) => theme.gray300};
         }
       }
+
+      .camera {
+        color: ${({ theme }) => theme.white};
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        p {
+          font-size: 1.6rem;
+          width: 100%;
+        }
+      }
+
+      img,
+      .img {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+      }
     }
 
     > button {
@@ -71,10 +97,6 @@ export const Form = styled.div`
       margin-top: 1.6rem;
       border-radius: 10px;
       font-weight: 500;
-
-      &:disabled {
-        opacity: 0.5;
-      }
     }
 
     > a {

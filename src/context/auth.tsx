@@ -1,18 +1,26 @@
-'use client'
 import { api } from '@/lib/api'
-import {
-  ReactNode,
+import React, {
   createContext,
+  ReactNode,
   useContext,
   useEffect,
   useState,
 } from 'react'
 
-const AuthContext = createContext({})
+interface AuthData {
+  user: string
+  token: string
+}
+
+interface AuthContextData {
+  data: AuthData
+  setData: React.Dispatch<React.SetStateAction<AuthData>>
+}
+
+const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 function AuthProvider({ children }: { children: ReactNode }) {
-  // eslint-disable-next-line no-undef
-  const [data, setData] = useState({ user: '', token: '' })
+  const [data, setData] = useState<AuthData>({ user: '', token: '' })
 
   useEffect(() => {
     const user = localStorage.getItem('@mini-ecommerce:user')
@@ -23,13 +31,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
       setData({
         token,
-        user: JSON.stringify(user),
+        user: JSON.parse(user),
       })
     }
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user: data.user, setData }}>
+    <AuthContext.Provider value={{ data, setData }}>
       {children}
     </AuthContext.Provider>
   )

@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import session from '@/assets/session.jpg'
-import { Container, Display } from './styles'
+import { Display } from './styles'
 import Link from 'next/link'
 import { Plus } from 'phosphor-react'
 import NewProduct from '../../components/new/page'
