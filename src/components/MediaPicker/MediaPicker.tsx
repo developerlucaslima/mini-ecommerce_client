@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from 'react'
 import { Container } from './styles'
 import { Camera } from 'phosphor-react'
 
-export function MediaPicker({ ...rest }) {
+export function MediaPicker() {
   const [preview, setPreview] = useState<string | null>(null)
 
   function onFileSelected(event: ChangeEvent<HTMLInputElement>) {
@@ -28,7 +28,7 @@ export function MediaPicker({ ...rest }) {
       <input
         onChange={onFileSelected}
         type="file"
-        name="coverUrl"
+        name="media"
         id="media"
         accept="image/*"
         className="invisible h-0 w-0"

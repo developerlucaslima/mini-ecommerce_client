@@ -7,7 +7,7 @@ import { api } from '@/lib/api'
 import { useState } from 'react'
 import { ArrowRight } from 'phosphor-react'
 import Link from 'next/link'
-import { useAuth } from '@/hooks/auth'
+import { useRouter } from 'next/navigation'
 
 const RegisterFormSchema = z.object({
   username: z
@@ -35,7 +35,8 @@ export function FormSignIn() {
   })
 
   const [appError, setAppError] = useState('')
-  const { setData }: any = useAuth()
+
+  const router = useRouter()
 
   function handleClaimUsername(data: FormData) {
     api
@@ -45,11 +46,11 @@ export function FormSignIn() {
       })
       .then((response) => {
         const { user, token } = response.data
-        console.log(user) // Access the user object
-        console.log(token) // Access the token
-        setData({ user, token })
 
-        api.defaults.headers.authorization = `Bearer ${token}`
+        localStorage.setItem('@mini-ecommerce:user', JSON.stringify(user))
+        localStorage.setItem('@mini-ecommerce:token', token)
+
+        router.push('/home')
       })
       .catch((err) => {
         if (err.response) {

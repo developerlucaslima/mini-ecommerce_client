@@ -3,7 +3,7 @@
 import StyledComponentsRegistry from '@/lib/registry'
 import { ReactNode } from 'react'
 import { Roboto_Flex as Roboto } from 'next/font/google'
-import { AuthProvider } from '@/hooks/auth'
+import { AuthProvider } from '@/context/auth'
 import GlobalStyles from '@/styles/global'
 import ThemeProvider from '@/styles/themeProvider'
 
