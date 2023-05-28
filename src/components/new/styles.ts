@@ -2,6 +2,38 @@
 import styled from 'styled-components'
 
 export const Form = styled.div`
+  height: 100vh;
+  max-width: 40rem;
+  padding: 1.6rem;
+  background-color: ${({ theme }) => theme.gray300};
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 5.6rem;
+    margin-bottom: 1.6rem;
+    padding: 0 1.6rem;
+    border-radius: 10px;
+
+    color: ${({ theme }) => theme.bg900};
+
+    button {
+      border: none;
+      display: flex;
+      align-items: center;
+
+      padding: 0.4rem;
+      border-radius: 50%;
+      background-color: ${({ theme }) => theme.red};
+
+      svg {
+        color: ${({ theme }) => theme.bg900};
+      }
+    }
+  }
+
   > form {
     max-width: 56rem;
     display: flex;

@@ -1,10 +1,11 @@
 'use client'
 import { FormEvent } from 'react'
 import { Form } from './styles'
-import { Plus } from 'phosphor-react'
+import { Plus, X } from 'phosphor-react'
 import { api } from '@/lib/api'
 import { MediaPicker } from '@/components/MediaPicker/MediaPicker'
 import { useAuth } from '@/context/auth'
+import { useNew } from '@/context/new'
 
 export default function NewProduct() {
   const { user }: any = useAuth()
@@ -44,8 +45,21 @@ export default function NewProduct() {
       })
   }
 
+  const { setSellProduct } = useNew()
+
   return (
     <Form>
+      <div className="title">
+        <h1>Sell product</h1>
+        <button className="ShoppingCart">
+          <X
+            size={25}
+            onClick={() => {
+              setSellProduct(false)
+            }}
+          />
+        </button>
+      </div>
       <form onSubmit={handleCreateProduct}>
         {/* Name */}
         <label>

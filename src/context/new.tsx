@@ -1,45 +1,25 @@
-'use client'
-import { api } from '@/lib/api'
-import { theme } from '@/styles/theme'
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
-import { ThemeProvider } from 'styled-components'
+import React, { ReactNode, createContext, useContext, useState } from 'react'
 
-const AuthContext = createContext({})
+interface AuthContextProps {
+  sellProduct: boolean
+  setSellProduct: (value: boolean) => void
+}
 
-function AuthProvider({ children }: { children: ReactNode }) {
-  // eslint-disable-next-line no-undef
-  const [data, setData] = useState({ user: '', token: '' })
+const AuthContext = createContext<AuthContextProps>({} as AuthContextProps)
 
-  useEffect(() => {
-    const user = localStorage.getItem('@mini-ecommerce:user')
-    const token = localStorage.getItem('@mini-ecommerce:token')
-
-    if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`
-
-      setData({
-        token,
-        user: JSON.stringify(user),
-      })
-    }
-  }, [])
+function NewProvider({ children }: { children: ReactNode }) {
+  const [sellProduct, setSellProduct] = useState(false)
 
   return (
-    <AuthContext.Provider value={{ user: data.user, setData }}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <AuthContext.Provider value={{ sellProduct, setSellProduct }}>
+      {children}
     </AuthContext.Provider>
   )
 }
 
-function useAuth() {
+function useNew() {
   const context = useContext(AuthContext)
   return context
 }
 
-export { AuthProvider, useAuth }
+export { NewProvider, useNew }

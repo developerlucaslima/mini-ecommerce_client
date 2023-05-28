@@ -6,6 +6,7 @@ import { Roboto_Flex as Roboto } from 'next/font/google'
 import { AuthProvider } from '@/context/auth'
 import GlobalStyles from '@/styles/global'
 import ThemeProvider from '@/styles/themeProvider'
+import { NewProvider } from '@/context/new'
 
 const roboto = Roboto({ subsets: ['latin'] })
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -14,8 +15,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <AuthProvider>
           <ThemeProvider>
-            <GlobalStyles />
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            <NewProvider>
+              <GlobalStyles />
+              <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            </NewProvider>
           </ThemeProvider>
         </AuthProvider>
       </body>

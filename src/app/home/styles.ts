@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Display = styled.div`
   max-width: 100%;
   height: 100%;
   display: flex;
@@ -9,10 +9,11 @@ export const Container = styled.div`
   gap: 3.2rem;
 
   > ul {
+    padding: 3.2rem;
     li {
-      max-width: 48rem;
+      max-width: 40rem;
       gap: 1.6rem;
-      padding: 1.2rem;
+      padding: 1.6rem;
       border-radius: 10px;
 
       display: flex;
@@ -29,7 +30,7 @@ export const Container = styled.div`
         height: 5.6rem;
         width: 100%;
 
-        padding: 1.2rem;
+        padding: 1.6rem;
         color: ${({ theme }) => theme.orange};
         background: ${({ theme }) => theme.bg900};
         border-radius: 10px;
@@ -40,7 +41,7 @@ export const Container = styled.div`
           color: ${({ theme }) => theme.orange};
           background: ${({ theme }) => theme.bg900};
           padding: 0.8rem;
-          border-radius: 99%;
+          border-radius: 50%;
         }
       }
 
@@ -57,5 +58,10 @@ export const Container = styled.div`
         object-fit: cover;
       }
     }
+  }
+
+  > .sell {
+    position: fixed;
+    right: 0;
   }
 `
