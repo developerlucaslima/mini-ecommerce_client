@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.header`
-  height: 10.5rem;
+  position: fixed;
+  top: 0;
+  height: 8rem;
   width: 100%;
+  background-color: ${({ theme }) => theme.bg800};
 
   border-bottom-width: 1px;
   border-bottom-style: solid;

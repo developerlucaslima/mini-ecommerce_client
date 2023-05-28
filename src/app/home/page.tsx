@@ -39,14 +39,14 @@ export default function Home() {
     setSortByPrice(sortByPrice === 'asc' ? 'desc' : 'asc')
   }
 
-  // Filter by name and description
+  // Filtrar produtos com base no texto de pesquisa
   const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().includes(search) ||
       product.description.toLowerCase().includes(search),
   )
 
-  // Order by price
+  // Ordenar produtos por preço
   const sortedProducts = filteredProducts.sort((a, b) => {
     if (sortByPrice === 'asc') {
       return a.price - b.price
@@ -54,6 +54,13 @@ export default function Home() {
       return b.price - a.price
     }
   })
+
+  function formatPrice(price: number) {
+    return price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })
+  }
 
   return (
     <>
@@ -77,7 +84,7 @@ export default function Home() {
               />
               <p>{product.description}</p>
               <h3 className="price">
-                Price: {product.price}
+                Price: {formatPrice(product.price)}
                 <Link href="#">
                   <Plus size={25} />
                 </Link>
