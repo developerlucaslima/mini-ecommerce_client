@@ -1,12 +1,12 @@
 Você deve desenvolver um mini e-commerce utilizando NextJS e um banco de dados para armazenar os produtos. O aplicativo deve ter as seguintes funcionalidades:
 
-  [ ] - Tela de cadastro de produtos: (new)
-  [ ] - Permitir que o usuário adicione novos produtos, fornecendo informações como nome, descrição, preço e imagem. (new)
+  [X] - Tela de cadastro de produtos: (new)
+  [X] - Permitir que o usuário adicione novos produtos, fornecendo informações como nome, descrição, preço e imagem. (new)
   [ ] - Validar os campos obrigatórios e exibir mensagens de erro caso algum campo não esteja preenchido corretamente. (new)
   [x] - Salvar os produtos no banco de dados. (new)
-  [ ] - Tela de listagem de produtos: (products)
-  [ ] - Exibir todos os produtos cadastrados, incluindo nome, descrição, preço e imagem. (products)
-  [ ] - Permitir que o usuário filtre os produtos por categoria ou utilize uma pesquisa por nome. (products:id)
+  [X] - Tela de listagem de produtos: (products)
+  [X] - Exibir todos os produtos cadastrados, incluindo nome, descrição, preço e imagem. (products)
+  [X] - Permitir que o usuário filtre os produtos por categoria ou utilize uma pesquisa por nome. (products:id)
   [ ] - Exibir os produtos de forma paginada, com um número fixo de produtos por página. (products)
   [ ] - Funcionalidade de carrinho de compras: (cart)
   [ ] - Permitir que o usuário adicione produtos ao carrinho. (cart)

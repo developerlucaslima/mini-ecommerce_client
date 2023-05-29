@@ -8,9 +8,29 @@ export const Display = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 3.2rem;
+  justify-content: center;
+
+  .pages {
+    margin-top: 1.6rem;
+    margin-bottom: -1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    button {
+      height: 5.6rem;
+      width: 5.6rem;
+      background: ${({ theme }) => theme.bg900};
+      color: ${({ theme }) => theme.white};
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: none;
+    }
+  }
 
   > ul {
-    padding: 3.2rem;
+    padding: 0 3.2rem;
     gap: 3.2rem;
     display: flex;
     justify-content: center;

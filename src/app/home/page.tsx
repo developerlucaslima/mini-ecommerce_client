@@ -17,6 +17,13 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([])
   const [search, setSearch] = useState<string>('')
   const [sortByPrice, setSortByPrice] = useState<'asc' | 'desc'>('asc')
+  const [itensPerPage, setItensPerPage] = useState<number>(12)
+  const [currentPage, setCurrentPage] = useState<number>(0)
+
+  const pages = Math.ceil(products.length / itensPerPage)
+  const startIndex = currentPage * itensPerPage
+  const endIndex = startIndex + itensPerPage
+  const currentProducts = products.slice(startIndex, endIndex)
 
   useEffect(() => {
     fetchProducts()
@@ -40,7 +47,7 @@ export default function Home() {
   }
 
   // Filtrar produtos com base no texto de pesquisa
-  const filteredProducts = products.filter(
+  const filteredProducts = currentProducts.filter(
     (product) =>
       product.name.toLowerCase().includes(search) ||
       product.description.toLowerCase().includes(search),
@@ -71,6 +78,21 @@ export default function Home() {
         value={search}
       />
       <Display>
+        <div className="pages">
+          <h3>Pages</h3>
+          {Array.from(Array(pages), (item, index) => {
+            return (
+              <button
+                value={index}
+                key={index}
+                onClick={(e) => setCurrentPage(Number(e.target.value))}
+              >
+                {index + 1}
+              </button>
+            )
+          })}
+        </div>
+
         <ul>
           {sortedProducts.map((product) => (
             <li key={product.id}>

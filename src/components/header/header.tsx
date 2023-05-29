@@ -2,24 +2,27 @@
 
 import { useNew } from '@/context/new'
 import { Container, Icons } from './styles'
-import { Plus, SignOut, ShoppingCart } from 'phosphor-react'
+import { Plus, SignOut, ShoppingCart, Funnel } from 'phosphor-react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/auth'
 
-export default function Header({ value, onChange, onClick, sortByPrice }) {
+export default function Header({ value, onChange, onClick, sortByPrice }: any) {
   const { data } = useAuth()
   const { setSellProduct } = useNew()
   const router = useRouter()
   return (
     <Container>
       <h1>Mini Ecommerce</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Search"
-          value={value}
-          onChange={onChange}
-        />
+      <div className="filter">
+        <div className="search">
+          <Funnel size={25} />
+          <input
+            type="text"
+            placeholder="Search"
+            value={value}
+            onChange={onChange}
+          />
+        </div>
         <button onClick={onClick}>
           Sort by Price ({sortByPrice === 'asc' ? 'Low to High' : 'High to Low'}
           )
