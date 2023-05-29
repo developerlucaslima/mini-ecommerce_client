@@ -1,9 +1,9 @@
 'use client'
-import { useAuth } from '@/context/auth'
 import Home from './home/page'
 import SignIn from './sessions/signin/page'
 
 export default function Page() {
-  const { user }: any = useAuth()
+  const user = localStorage.getItem('@mini-ecommerce:user')
+
   return <>{user ? <Home /> : <SignIn />}</>
 }

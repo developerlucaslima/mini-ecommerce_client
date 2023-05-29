@@ -69,13 +69,13 @@ export const Icons = styled.div`
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: ${({ theme }) => theme.orange};
+    color: ${({ theme }) => theme.white};
     border: none;
-    background: ${({ theme }) => theme.bg900};
+    background: ${({ theme }) => theme.green};
     padding: 2rem;
     border-radius: 10px;
     > svg {
-      color: ${({ theme }) => theme.orange};
+      color: ${({ theme }) => theme.bg900};
     }
   }
 

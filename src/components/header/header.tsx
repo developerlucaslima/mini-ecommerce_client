@@ -2,12 +2,11 @@
 
 import { useNew } from '@/context/new'
 import { Container, Icons } from './styles'
-import { Plus, SignOut, ShoppingCart, Funnel } from 'phosphor-react'
+import { SignOut, ShoppingCart, Funnel, CurrencyDollar } from 'phosphor-react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/context/auth'
 
 export default function Header({ value, onChange, onClick, sortByPrice }: any) {
-  const { data } = useAuth()
+  const user = localStorage.getItem('@mini-ecommerce:user')
   const { setSellProduct } = useNew()
   const router = useRouter()
   return (
@@ -32,10 +31,12 @@ export default function Header({ value, onChange, onClick, sortByPrice }: any) {
         <button
           className="Plus"
           onClick={() => {
-            data.user ? setSellProduct(true) : router.push('/sessions/signin')
+            !localStorage.getItem('@mini-ecommerce:user')
+              ? router.push('/sessions/signin')
+              : setSellProduct(true)
           }}
         >
-          <Plus size={25} />
+          <CurrencyDollar size={25} />
           Sell product
         </button>
 
@@ -43,13 +44,18 @@ export default function Header({ value, onChange, onClick, sortByPrice }: any) {
           <ShoppingCart size={25} />
         </button>
 
-        {data.user ? (
-          <button className="SignOut">
-            <SignOut size={25} />
-          </button>
-        ) : (
-          ' '
-        )}
+        <button
+          className="SignOut"
+          onClick={() => {
+            router.push('/sessions/signin')
+            if (user) {
+              localStorage.removeItem('@mini-ecommerce:user')
+              localStorage.removeItem('@mini-ecommerce:token')
+            }
+          }}
+        >
+          <SignOut size={25} />
+        </button>
       </Icons>
     </Container>
   )

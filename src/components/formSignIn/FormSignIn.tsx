@@ -50,7 +50,9 @@ export function FormSignIn() {
         localStorage.setItem('@mini-ecommerce:user', JSON.stringify(user))
         localStorage.setItem('@mini-ecommerce:token', token)
 
-        router.push('/home')
+        api.defaults.headers.authorization = `Bearer ${token}`
+
+        router.push('/')
       })
       .catch((err) => {
         if (err.response) {

@@ -98,7 +98,7 @@ export default function Home() {
             <li key={product.id}>
               <h3>{product.name}</h3>
               <Image
-                src={session}
+                src={product.image}
                 alt=""
                 width={592}
                 height={280}
